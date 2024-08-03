@@ -51,7 +51,7 @@
           <div class="header-item-right">
             <a href="./signup.php" class="px-5 text-dark fw-500 f-18 m-none" >Sign In</a>
             <a href="./signup.php" class="btn btn-primary btn-hover m-none">Beta Sign-Up</a>
-            
+
            <!-- Language Dropdown -->
            <li class="nav-item dropdown m-none">
                     <a href="#" class="nav-link dropdown-toggle langbox" id="languageDropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -73,4 +73,3 @@
         </div>
       </div>
     </div>
-    
