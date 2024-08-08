@@ -38,31 +38,31 @@ $("input").intlTelInput({
     <div class="container">
         <div class="row">
             <div class="col-lg-6 px-4">
-                <p>Subscribe to timr Pro plan</p>
+                <p>{{ translateContent('Subscribe to timr Pro plan', $translationService) }}</p>
                 <h4> <span class="f-32 fw-600">$0</span> <sub class="f-16 fw-400">/month</sub></h4>
-                <h5 class="f-20 fw-600 d-flex justify-content-between"> <span>1 item x timr Pro plan</span> <span class="f-20 fw-600 text-right text-end">$400</span></h5>
-                <p class="ps-5">A single license for individual use.</p>
+                <h5 class="f-20 fw-600 d-flex justify-content-between"> <span>{{ translateContent('1 item x timr Pro plan', $translationService) }}</span> <span class="f-20 fw-600 text-right text-end">$400</span></h5>
+                <p class="ps-5">{{ translateContent('A single license for individual use.', $translationService) }}</p>
                 <hr>
                 <form action="" class="ps-5 pb-3">
                     <div class="form-group">
-                        <label for="" class="d-flex justify-content-between"><span>Subtotal</span><span>$400</span></label>
+                        <label for="" class="d-flex justify-content-between"><span>{{ translateContent('Subtotal', $translationService) }}</span><span>$400</span></label>
                         <input type="text" class="form-control" placeholder="Add coupon code">
                     </div>
                 </form>
                 <hr>
-                <label for="" class="ps-5  d-flex justify-content-between"><span>Subtotal</span><span>$400</span></label>
+                <label for="" class="ps-5  d-flex justify-content-between"><span>{{ translateContent('Subtotal', $translationService) }}</span><span>$400</span></label>
             </div>
 
             <div class="col-lg-6 border-left-1 px-4">
-                <h2 class="fw-600 f-20 text-center">Proceed To Pay</h2>
-                <p class="text-center">Enter your card details and get access to the timr</p>
+                <h2 class="fw-600 f-20 text-center">{{ translateContent('Proceed To Pay', $translationService) }}</h2>
+                <p class="text-center">{{ translateContent('Enter your card details and get access to the timr', $translationService) }}</p>
                 <form action="">
                     <div class="form-group mb-2">
-                        <label for="" class="fw-500">Card Holder’s Name</label>
+                        <label for="" class="fw-500">{{ translateContent('Card Holder’s Name', $translationService) }}</label>
                         <input type="text" class="form-control" placeholder="Add Card Holder’s Name">
                     </div>
                     <div class="form-group mb-2">
-                        <label for=""  class="fw-500">Card Information</label>
+                        <label for=""  class="fw-500">{{ translateContent('Card Information', $translationService) }}</label>
                         <input type="text" class="form-control" placeholder="Add Card Number">
                     </div>
                     <div class="form-group mb-2">
@@ -73,8 +73,8 @@ $("input").intlTelInput({
                         <label for=""  class="fw-500">CVS</label>
                         <input type="text" class="form-control" placeholder="CVS">
                     </div>
-                    <button class="btn btn-primary btn-block mt-3 mb-4" style="width:100%">Sign Up</button>
-                    <p>By placing order you agree to Terms of Service & Privacy Policy.</p>
+                    <button class="btn btn-primary btn-block mt-3 mb-4" style="width:100%">{{ translateContent('Sign Up', $translationService) }}</button>
+                    <p>{{ translateContent('By placing order you agree to Terms of Service & Privacy Policy.', $translationService) }}</p>
                 </form>
             </div>
         </div>

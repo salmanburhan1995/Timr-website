@@ -3,13 +3,49 @@
 
 namespace App\Http\Controllers\frontend;
 
-
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Services\TranslationService;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
-    public function index()
+    /*protected $translationService;
+
+    public function __construct(TranslationService $translationService)
     {
+        $this->translationService = $translationService;
+    }*/
+
+    public function change($locale)
+    {
+        if (in_array($locale, ['en', 'da','no' ,'de' ,'pl','sv'])) {
+            Session::put('locale', $locale);
+            \Log::info('Locale switched to: ' . $locale);
+
+        } else {
+            Session::put('locale', config('app.locale'));
+            \Log::info('Locale switched to default: ' . config('app.locale'));
+        }
+        return redirect()->back();
+    }
+
+    public function index(Request $request)
+    {
+        /*$lang = session('locale','en');
+        $content = [
+            'welcome_message' => 'Welcome to our website',
+            'homepage_content' => 'This is the content of the homepage.'
+        ];*/
+        //dd($lang);
+        //$content = translateContent($content, $lang, $this->translationService);
+        /*if ($lang !== 'en') {
+            foreach ($content as $key => $text) {
+                $content[$key] = $this->translationService->translate($text, $lang);
+            }
+        }*/
+       // $content = $this->translateContent($content, $lang);
+        //return view('frontend.index', $content);
         return view('frontend.index');
     }
 

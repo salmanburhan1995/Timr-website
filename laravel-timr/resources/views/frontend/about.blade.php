@@ -11,16 +11,16 @@
     <div class="container">
         <div class="row wow animate__animated animate__fadeInUp">
             <div class="col-lg-5">
-                <p class="f-16 fw-500">About Us</p>
-                <h2 class="f-32 fw-600 line-h-15">We strive to simplify the management of your temporary employees</h2>
+                <p class="f-16 fw-500">{{ translateContent('About Us',  $translationService) }}</p>
+                <h2 class="f-32 fw-600 line-h-15">{{ translateContent('We strive to simplify the management of your temporary employees',  $translationService) }}</h2>
             </div>
             <div class="col-lg-7">
                 <br>
                 <br>
-                <p class="f-18 fw-500 justify">Our mission is to provide you with seamless and efficient tools to effortlessly manage your temporary workforce, ensuring that your staffing needs are met with ease. We are dedicated to simplifying the complexities of temporary employment.</p>
+                <p class="f-18 fw-500 justify">{{ translateContent('Our mission is to provide you with seamless and efficient tools to effortlessly manage your temporary workforce, ensuring that your staffing needs are met with ease. We are dedicated to simplifying the complexities of temporary employment.',  $translationService) }}</p>
                 <br>
 
-                <p class="f-18 fw-500 justify">With our user-friendly interface and comprehensive solutions, you can streamline workflows, optimize resource allocation, and ensure compliance with ease. Let us help you navigate the complexities of temporary staffing.</p>
+                <p class="f-18 fw-500 justify">{{ translateContent('With our user-friendly interface and comprehensive solutions, you can streamline workflows, optimize resource allocation, and ensure compliance with ease. Let us help you navigate the complexities of temporary staffing.',  $translationService) }}</p>
             </div>
         </div>
         <div class="row justify-content-center align-items-center pt-4">
@@ -68,8 +68,8 @@
                         <img src="{{ asset('frontend/assets/img/about-1.svg') }}" alt="">
                     </div>
                     <div class="col-lg-7 p-4">
-                        <h3 class="fw-600 f-32 text-white">Expert HR specialists, and developers</h3>
-                        <p class="f-18 fw-500 justify text-white">Timr is a pioneering software development firm specializing in cutting-edge solutions for the recruitment sector. With a passion for technology and a deep understanding of the challenges faced by HR professionals, we have crafted a suite of sophisticated recruitment software designed to streamline and optimize the hiring process.</p>
+                        <h3 class="fw-600 f-32 text-white">{{ translateContent('Expert HR specialists, and developers',  $translationService) }}</h3>
+                        <p class="f-18 fw-500 justify text-white">{{ translateContent('Timr is a pioneering software development firm specializing in cutting-edge solutions for the recruitment sector. With a passion for technology and a deep understanding of the challenges faced by HR professionals, we have crafted a suite of sophisticated recruitment software designed to streamline and optimize the hiring process.',  $translationService) }}</p>
                     </div>
                 </div>
             </div>
@@ -82,14 +82,14 @@
         <div class="container">
             <div class="row justify-content-center align-items-center wow animate__animated animate__fadeInUp">
                 <div class="col-lg-4">
-                    <h2 class="f-32 fw-600">Meet <br> Our Team</h2>
-                    <p class="f-18 fw-500">Backed by years of industry <br> experience and a commitment <br> to innovation</p>
+                    <h2 class="f-32 fw-600">{{ translateContent('Meet',  $translationService) }} <br> {{ translateContent('Our Team',  $translationService) }}</h2>
+                    <p class="f-18 fw-500">{{ translateContent('Backed by years of industry <br> experience and a commitment <br> to innovation',  $translationService) }}</p>
                 </div>
                 <div class="col-lg-4 position-relative mb-3">
                     <div class="team">
                         <img src="{{ asset('frontend/assets/img/team/t-1.svg') }}" class="img-fluid" alt="">
                         <div class="content">
-                          <p>  Ammy Watson - CEO</p>
+                          <p>  {{ translateContent('Ammy Watson - CEO',  $translationService) }}</p>
                         </div>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                     <div class="team">
                         <img src="{{ asset('frontend/assets/img/team/t-2.svg') }}" class="img-fluid" alt="">
                         <div class="content">
-                          <p> Kenny Grey - COO</p>
+                          <p> {{ translateContent('Kenny Grey - COO',  $translationService) }}</p>
                         </div>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                     <div class="team">
                         <img src="{{ asset('frontend/assets/img/team/t-3.svg') }}" class="img-fluid" alt="">
                         <div class="content">
-                          <p> Ashley K - PM</p>
+                          <p> Ashley K - PM',</p>
                         </div>
                     </div>
                 </div>
@@ -134,19 +134,19 @@
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-6 wow animate__ animate__fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;">
-                    <p class="fw-500 f-16 fw-500">Candidates</p>
-                    <h2 class="f-32 fw-600 pt-2 line-h-15">Streamlined Recruitment, Enhanced Engagement</h2>
-                    <p class="f-18">The Candidate Management Module within our software platform offers a comprehensive
-                        solution for efficiently managing all aspects of the recruitment process. </p>
+                    <p class="fw-500 f-16 fw-500">{{ translateContent('Candidates',  $translationService) }}</p>
+                    <h2 class="f-32 fw-600 pt-2 line-h-15">{{ translateContent('Streamlined Recruitment, Enhanced Engagement',  $translationService) }}</h2>
+                    <p class="f-18">{{ translateContent('The Candidate Management Module within our software platform offers a comprehensive
+                        solution for efficiently managing all aspects of the recruitment process. ',  $translationService) }}</p>
 
                     <div class="pt-4">
                         <ul class="liststar f-18 mb-3">
-                            <li>Capture essential information, such as resumes, contact details, and interview feedback
+                            <li>{{ translateContent('Capture essential information, such as resumes, contact details, and interview feedback',  $translationService) }}
                             </li>
-                            <li>Recruiters can streamline their processes, ensuring timely follow-ups </li>
-                            <li>Advanced search and filtering capabilities enable quick access to candidate information
+                            <li>{{ translateContent('Recruiters can streamline their processes, ensuring timely follow-ups',  $translationService) }} </li>
+                            <li>{{ translateContent('Advanced search and filtering capabilities enable quick access to candidate information',  $translationService) }}
                             </li>
-                            <li>Simplifies candidate tracking, improves recruitment outcomes, and overall productivity
+                            <li>{{ translateContent('Simplifies candidate tracking, improves recruitment outcomes, and overall productivity',  $translationService) }}
                             </li>
                         </ul>
                     </div>

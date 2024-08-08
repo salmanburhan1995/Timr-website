@@ -10,16 +10,16 @@
     <div class="container">
         <div class="row justify-content-center align-items-center text-center wow animate__animated animate__fadeInUp">
                 <div class="col-lg-8 mb-4">
-                    <h4 class="f-16 fw-500">Let us help you</h4>
-                    <h2 class="f-32 fw-600">Unlimited list of incoming features <br> that will help scale your workforce
+                    <h4 class="f-16 fw-500">{{ translateContent('Let us help you',  $translationService) }}</h4>
+                    <h2 class="f-32 fw-600">{{ translateContent('Unlimited list of incoming features',  $translationService) }} <br> {{ translateContent('that will help scale your workforce,  $translationService) }}
                     </h2>
-                    <p>Automated scheduling, real-time tracking, and customizable reporting <br> empower seamless
-                        workforce management.</p>
+                    <p>{{ translateContent('Automated scheduling, real-time tracking, and customizable reporting',  $translationService) }} <br> {{ translateContent('empower seamless
+                        workforce management.',  $translationService) }}</p>
                 </div>
         </div>
         <div class="row justify-content-center align-items-center wow animate__animated animate__fadeInUp">
             <div class="col-lg-4">
-                <h2 class="f-32 fw-600">Offered Features</h2>
+                <h2 class="f-32 fw-600">{{ translateContent('Offered Features',  $translationService) }}</h2>
                 <p class="f-18 fw-500">Lorem ipsum dolor sit amet, consectetur adipiscing </p>
             </div>
             <div class="col-lg-4 mb-3">
@@ -30,7 +30,7 @@
                         </div>
                         <div class="f-content">
                             <img src="{{ asset('frontend/assets/img/candidate.svg') }}" whidth="20" class="img-fluid pb-3" alt="">
-                            <h4 class="fw-600 f-20">Dashboard</h4>
+                            <h4 class="fw-600 f-20">{{ translateContent('Dashboard',  $translationService) }}</h4>
                             <p class="f-18 fw-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit </p>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                         </div>
                         <div class="f-content">
                             <img src="{{ asset('frontend/assets/img/candidate.svg') }}" whidth="20" class="img-fluid pb-3" alt="">
-                            <h4 class="fw-600 f-20">Insights</h4>
+                            <h4 class="fw-600 f-20">{{ translateContent('Insights',  $translationService) }}</h4>
                             <p class="f-18 fw-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit </p>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                         </div>
                         <div class="f-content">
                             <img src="{{ asset('frontend/assets/img/candidate.svg') }}" whidth="20" class="img-fluid pb-3" alt="">
-                            <h4 class="fw-600 f-20">Companies</h4>
+                            <h4 class="fw-600 f-20">{{ translateContent('Companies',  $translationService) }}</h4>
                             <p class="f-18 fw-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit </p>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                         </div>
                         <div class="f-content">
                             <img src="{{ asset('frontend/assets/img/candidate.svg') }}" whidth="20" class="img-fluid pb-3" alt="">
-                            <h4 class="fw-600 f-20">Cases</h4>
+                            <h4 class="fw-600 f-20">{{ translateContent('Cases',  $translationService) }}</h4>
                             <p class="f-18 fw-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit </p>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                         </div>
                         <div class="f-content">
                             <img src="{{ asset('frontend/assets/img/candidate.svg') }}" whidth="20" class="img-fluid pb-3" alt="">
-                            <h4 class="fw-600 f-20">Invoices</h4>
+                            <h4 class="fw-600 f-20">{{ translateContent('Invoices',  $translationService) }}</h4>
                             <p class="f-18 fw-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit </p>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                         </div>
                         <div class="f-content">
                             <img src="{{ asset('frontend/assets/img/candidate.svg') }}" whidth="20" class="img-fluid pb-3" alt="">
-                            <h4 class="fw-600 f-20">Candidates</h4>
+                            <h4 class="fw-600 f-20">{{ translateContent('Candidates',  $translationService) }}</h4>
                             <p class="f-18 fw-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit </p>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                         </div>
                         <div class="f-content">
                             <img src="{{ asset('frontend/assets/img/candidate.svg') }}" whidth="20" class="img-fluid pb-3" alt="">
-                            <h4 class="fw-600 f-20">Union Agreements</h4>
+                            <h4 class="fw-600 f-20">{{ translateContent('Union Agreements',  $translationService) }}</h4>
                             <p class="f-18 fw-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit </p>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
                         </div>
                         <div class="f-content">
                             <img src="{{ asset('frontend/assets/img/candidate.svg') }}" whidth="20" class="img-fluid pb-3" alt="">
-                            <h4 class="fw-600 f-20">Time Sheet</h4>
+                            <h4 class="fw-600 f-20">{{ translateContent('Time Sheet',  $translationService) }}</h4>
                             <p class="f-18 fw-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit </p>
                         </div>
                     </div>
@@ -152,9 +152,9 @@
                 <h3 class="fw-600 f-65">
                     <span class="counter" data-target="200048">200,048</span><span>+</span>
                 </h3>
-                <p class="fw-400 f-16 line-h-15">companies onboard Timr, efficiently
-                managing temporary workers</p>
-                <a href="#" class="btn btn-primary ">Sign Up For Free</a>
+                <p class="fw-400 f-16 line-h-15">{{ translateContent('companies onboard Timr, efficiently
+                managing temporary workers',  $translationService) }}</p>
+                <a href="#" class="btn btn-primary ">{{ translateContent('Sign Up For Free',  $translationService) }}</a>
                 </div>
                 <div class="col-lg-2 position-relative mb-2">
                     <img src="{{ asset('frontend/assets/img/ca-3.svg') }}" class="img-fluid rounded ca-2" alt="">

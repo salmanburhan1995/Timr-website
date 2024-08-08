@@ -69,7 +69,7 @@
                                     <li>Union Agreements</li>
                                 </ul>
                                 <div class="pt-5">
-                                    <a href="{{ route('payment') }}" class="btn btn-border">Select Plan</a>
+                                    <a href="{{ route('payment') }}" class="btn btn-border">{{ __('Select Plan') }}</a>
                                 </div>
                             </div>
                         </div>

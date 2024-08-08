@@ -10,7 +10,8 @@
                 </a>
               </div>
               <div class="footer-text">
-                <p>An intuitive employee time management software streamlining scheduling, tracking, and optimizing workforce productivity.</p>
+                <p>
+                    {{ translateContent('An intuitive employee time management software streamlining scheduling, tracking, and optimizing workforce productivity.', $translationService) }}</p>
               </div>
             </div>
           </div>
@@ -18,8 +19,8 @@
             <div class="footer-widget">
                 <div class="footer-widget-heading"></div>
               <ul>
-                <li><a href="{{ route('index') }}">Home</a></li>
-                <li><a href="{{ route('aboutus') }}">About Us </a></li>
+                <li><a href="{{ route('index') }}">{{ translateContent('Home',$translationService) }}</a></li>
+                <li><a href="{{ route('aboutus') }}">{{ translateContent('About Us',$translationService) }} </a></li>
               </ul>
             </div>
           </div>
@@ -27,8 +28,8 @@
             <div class="footer-widget">
             <div class="footer-widget-heading"> </div>
               <ul>
-                <li><a href="{{ route('price') }}">Pricing</a></li>
-                <li><a href="{{ route('feature') }}">Features</a></li>
+                <li><a href="{{ route('price') }}">{{ translateContent('Pricing',$translationService) }}</a></li>
+                <li><a href="{{ route('feature') }}">{{ translateContent('Features',$translationService) }}</a></li>
               </ul>
             </div>
           </div>
@@ -36,8 +37,8 @@
             <div class="footer-widget">
             <div class="footer-widget-heading"> </div>
               <ul>
-                <li><a href="#">Privacy policy</a></li>
-                <li><a href="#">Terms & Condition</a></li>
+                <li><a href="#">{{ translateContent('Privacy policy',$translationService) }}</a></li>
+                <li><a href="#">{{ translateContent('Terms & Condition',$translationService) }}</a></li>
               </ul>
             </div>
           </div>
@@ -74,8 +75,8 @@
           </div>
       </div>
     </div>
-  </footer>
   </div>
+ </footer>
 
   <!-- Modal -->
 {{--
@@ -87,10 +88,12 @@
       </div>
       <div class="modal-body d-flex flex-column align-items-center">
           <img src="{{ asset('frontend/assets/img/phone.svg') }}" width="80" />
-        <p class="my-3 f-24 fw-600 text-black text-center mx-5"> Would you like us to call you and give you  a free demo of Timr?</p>
+        <p class="my-3 f-24 fw-600 text-black text-center mx-5">
+        {{ translateContent('Would you like us to call you and give you  a free demo of Timr?', $translationService) }}
+         </p>
         <div class="d-flex justify-content-center gap-4 w-100 mt-3">
-          <a href="#" class="btn btn-primary color-1 btn-border mt-4 mb-4  w-50">No</a>
-          <a href="#" class="btn btn-primary color-1  mt-4 mb-4  w-50">Yes</a>
+          <a href="#" class="btn btn-primary color-1 btn-border mt-4 mb-4  w-50"> {{ translateContent('No',$translationService) }}</a>
+          <a href="#" class="btn btn-primary color-1  mt-4 mb-4  w-50">{{ translateContent('Yes', $translationService) }}</a>
 
         </div>
       </div>

@@ -14,65 +14,65 @@
                         <thead class="border-bottom bg-dark-l mb-2">
                             <tr class="border-bottom-1 mb-2">
                                 <th>
-                                    Feature
+                                    {{ translateContent('Feature',  $translationService) }}
                                 </th>
                                 <th>
-                                    Free
+                                    {{ translateContent('Free',  $translationService) }}
                                 </th>
                                 <th>
-                                    Pro
+                                    {{ translateContent('Pro',  $translationService) }}
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="border-bottom bg-light">
-                                <td class="border-0">Dashboard</td>
+                                <td class="border-0">{{ translateContent('Dashboard',  $translationService) }}</td>
                                 <td class="border-0"><img src="{{ asset('frontend/assets/img/check.svg') }}" width="30" alt=""></td>
                                 <td class="border-0"><img src="{{ asset('frontend/assets/img/check.svg') }}" alt=""></td>
                             </tr>
                             <tr class="border-bottom bg-light">
-                                <td class="border-0">Company Management</td>
+                                <td class="border-0">{{ translateContent('Company Management',  $translationService) }}</td>
                                 <td class="border-0"><img src="{{ asset('frontend/assets/img/check.svg') }}" width="30" alt=""></td>
                                 <td class="border-0"><img src="{{ asset('frontend/assets/img/check.svg') }}" alt=""></td>
                             </tr>
 
                             <tr class="border-bottom bg-light">
-                                <td class="border-0">Case management</td>
+                                <td class="border-0">{{ translateContent('Case management',  $translationService) }}</td>
                                 <td class="border-0"><img src="{{ asset('frontend/assets/img/check.svg') }}" width="30" alt=""></td>
                                 <td class="border-0"><img src="{{ asset('frontend/assets/img/check.svg') }}" alt=""></td>
                             </tr>
                             <tr class="border-bottom bg-light">
-                                <td class="border-0">Invoicing</td>
+                                <td class="border-0">{{ translateContent('Invoicing',  $translationService) }}</td>
                                 <td class="border-0"><img src="{{ asset('frontend/assets/img/check.svg') }}" width="30" alt=""></td>
                                 <td class="border-0"><img src="{{ asset('frontend/assets/img/check.svg') }}" alt=""></td>
                             </tr>
                             <tr class="border-bottom bg-light">
-                                <td class="border-0">Union Agreements</td>
+                                <td class="border-0">{{ translateContent('Union Agreements',  $translationService) }}</td>
                                 <td class="border-0"><img src="{{ asset('frontend/assets/img/check.svg') }}" width="30" alt=""></td>
                                 <td class="border-0"><img src="{{ asset('frontend/assets/img/check.svg') }}" alt=""></td>
                             </tr>
                             <tr class="border-bottom bg-light">
-                                <td class="border-0">Customizable insights</td>
+                                <td class="border-0">{{ translateContent('Customizable insights',  $translationService) }}</td>
                                 <td class="border-0"><img src="{{ asset('frontend/assets/img/check.svg') }}" width="30" alt=""></td>
                                 <td class="border-0"><img src="{{ asset('frontend/assets/img/check.svg') }}" alt=""></td>
                             </tr>
                             <tr class="border-bottom bg-light">
-                                <td class="border-0">Customize invoices and sms</td>
+                                <td class="border-0">{{ translateContent('Customize invoices and sms',  $translationService) }}</td>
                                 <td class="border-0"><img src="{{ asset('frontend/assets/img/check.svg') }}" width="30" alt=""></td>
                                 <td class="border-0"><img src="{{ asset('frontend/assets/img/check.svg') }}" alt=""></td>
                             </tr>
                             <tr class="border-bottom bg-light">
-                                <td class="border-0">Mobile app for temp employees</td>
+                                <td class="border-0">{{ translateContent('Mobile app for temp employees',  $translationService) }}</td>
                                 <td class="border-0"><img src="{{ asset('frontend/assets/img/check.svg') }}" width="30" alt=""></td>
                                 <td class="border-0"><img src="{{ asset('frontend/assets/img/check.svg') }}" alt=""></td>
                             </tr>
                             <tr class="border-bottom bg-light">
-                                <td class="border-0">Feature Detail</td>
+                                <td class="border-0">{{ translateContent('Feature Detail',  $translationService) }}</td>
                                 <td class="border-0"><img src="{{ asset('frontend/assets/img/check.svg') }}" width="30" alt=""></td>
                                 <td class="border-0"><img src="{{ asset('frontend/assets/img/check.svg') }}" alt=""></td>
                             </tr>
                             <tr class="border-bottom bg-light">
-                                <td class="border-0">Salaries</td>
+                                <td class="border-0">{{ translateContent('Salaries',  $translationService) }}</td>
                                 <td class="border-0"><img src="{{ asset('frontend/assets/img/check.svg') }}" width="30" alt=""></td>
                                 <td class="border-0"><img src="{{ asset('frontend/assets/img/check.svg') }}" alt=""></td>
                             </tr>
@@ -87,9 +87,9 @@
         <div class="container">
             <div class="row wow animate__animated animate__fadeInUp">
                 <div class="col-lg-5">
-                    <h2 class="fw-600 f-45">FAQs</h2>
-                    <p>Stay up-to-date with the latest developments, updates, and enhancements to Timr through our
-                        regularly updated FAQ section</p>
+                    <h2 class="fw-600 f-45">{{ translateContent('FAQs',  $translationService) }}</h2>
+                    <p>{{ translateContent('Stay up-to-date with the latest developments, updates, and enhancements to Timr through our
+                        regularly updated FAQ section',  $translationService) }}</p>
                 </div>
                 <div class="col-1"></div>
                 <div class="col-lg-6">
@@ -99,7 +99,7 @@
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#flush-collapseOne" aria-expanded="false"
                                     aria-controls="flush-collapseOne">
-                                    How can I search for candidates?
+                                    {{ translateContent('How can I search for candidates?',  $translationService) }}
                                 </button>
                             </h2>
                             <div id="flush-collapseOne" class="accordion-collapse collapse"
