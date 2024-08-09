@@ -11,10 +11,10 @@
         <div class="row justify-content-center align-items-center text-center wow animate__animated animate__fadeInUp">
                 <div class="col-lg-8 mb-4">
                     <h4 class="f-16 fw-500">{{ translateContent('Let us help you',  $translationService) }}</h4>
-                    <h2 class="f-32 fw-600">{{ translateContent('Unlimited list of incoming features',  $translationService) }} <br> {{ translateContent('that will help scale your workforce,  $translationService) }}
+                    <h2 class="f-32 fw-600">{{ translateContent('Unlimited list of incoming features',  $translationService) }} <br> {{ translateContent('that will help scale your workforce',  $translationService) }}
                     </h2>
-                    <p>{{ translateContent('Automated scheduling, real-time tracking, and customizable reporting',  $translationService) }} <br> {{ translateContent('empower seamless
-                        workforce management.',  $translationService) }}</p>
+                    <p>{{ translateContent('Automated scheduling, real-time tracking, and customizable reporting',  $translationService) }} <br>
+                        {{ translateContent('empower seamless workforce management.',  $translationService) }}</p>
                 </div>
         </div>
         <div class="row justify-content-center align-items-center wow animate__animated animate__fadeInUp">
