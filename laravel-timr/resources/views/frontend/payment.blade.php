@@ -56,7 +56,8 @@ $("input").intlTelInput({
             <div class="col-lg-6 border-left-1 px-4">
                 <h2 class="fw-600 f-20 text-center">{{ translateContent('Proceed To Pay', $translationService) }}</h2>
                 <p class="text-center">{{ translateContent('Enter your card details and get access to the timr', $translationService) }}</p>
-                <form action="">
+                <form action="{{route('stripe.payment')}}" method="POST">
+                    @csrf
                     <div class="form-group mb-2">
                         <label for="" class="fw-500">{{ translateContent('Card Holder’s Name', $translationService) }}</label>
                         <input type="text" class="form-control" placeholder="Add Card Holder’s Name">

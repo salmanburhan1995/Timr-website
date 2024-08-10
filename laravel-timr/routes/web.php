@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\frontend\AbcController;
+use App\Http\Controllers\frontend\StripePaymentController;
 
 /*Route::get('/', function () {
     //return view('welcome');
@@ -27,3 +28,4 @@ use App\Http\Controllers\frontend\AbcController;
 
 //});
 Route::get('lang/{locale}',[HomeController::class , 'change'])->name('lang.switch');
+Route::post('stripe-payment',[StripePaymentController::class,'payment'])->name('stripe.payment');
