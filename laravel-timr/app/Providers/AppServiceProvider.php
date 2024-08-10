@@ -14,6 +14,12 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(TranslationService::class, function ($app) {
             return new TranslationService(new Client(env('OPENAI_API_KEY')));
         });
+        $this->app->singleton('CustomerService', function ($app) {
+            return new \App\Services\Stripe\CustomerService();
+        });
+        $this->app->singleton('CardService', function ($app) {
+            return new \App\Services\Stripe\CardService();
+        });
     }
 
 

@@ -56,31 +56,50 @@ $("input").intlTelInput({
             <div class="col-lg-6 border-left-1 px-4">
                 <h2 class="fw-600 f-20 text-center">{{ translateContent('Proceed To Pay', $translationService) }}</h2>
                 <p class="text-center">{{ translateContent('Enter your card details and get access to the timr', $translationService) }}</p>
-                <form action="{{route('stripe.payment')}}" method="POST">
+                <form action="{{route('stripe.payment')}}" method="POST" id="payment-form">
                     @csrf
-                    <div class="form-group mb-2">
+                    <div id="card-element"></div>
+                    <div class="form-group mb-2" id="cardName-div">
                         <label for="" class="fw-500">{{ translateContent('Card Holder’s Name', $translationService) }}</label>
-                        <input type="text" class="form-control" placeholder="Add Card Holder’s Name">
+                        <input type="text" class="form-control" placeholder="Add Card Holder’s Name" id="cardName" name="cardName">
                     </div>
-                    <div class="form-group mb-2">
+                    <div class="form-group mb-2 form-control" id="cardNumber-div">
                         <label for=""  class="fw-500">{{ translateContent('Card Information', $translationService) }}</label>
-                        <input type="text" class="form-control" placeholder="Add Card Number">
+                        <input type="text" class="form-control" placeholder="Add Card Number" id="cardNumber" name="cardNumber">
                     </div>
-                    <div class="form-group mb-2">
+                    <div class="form-group mb-2" id="cardDate-div">
                         <label for=""  class="fw-500">MM/YY</label>
-                        <input type="text" class="form-control" placeholder="MM/YY">
+                        <input type="text" class="form-control" placeholder="MM/YY" id="cardExpDate"  name="cardExpDate">
                     </div>
-                    <div class="form-group mb-2">
+                    <div class="form-group mb-2" id="cardCvs-div">
                         <label for=""  class="fw-500">CVS</label>
-                        <input type="text" class="form-control" placeholder="CVS">
+                        <input type="text" class="form-control" placeholder="CVS" id="cardCVS" name="cardCVS">
                     </div>
-                    <button class="btn btn-primary btn-block mt-3 mb-4" style="width:100%">{{ translateContent('Sign Up', $translationService) }}</button>
-                    <p>{{ translateContent('By placing order you agree to Terms of Service & Privacy Policy.', $translationService) }}</p>
+                    <button type="Submit" class="btn btn-primary btn-block mt-3 mb-4" style="width:100%">{{ translateContent('Sign Up', $translationService) }}</button>
+                    <p id="payment-result">{{ translateContent('By placing order you agree to Terms of Service & Privacy Policy.', $translationService) }}</p>
                 </form>
             </div>
         </div>
     </div>
 </section>
 @include('frontend.include.footerlink')
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    const stripe = Stripe("{{env('STRIPE_KEY')}}")
+    const appearance = {
+        theme: 'flat',
+        variables: { colorPrimaryText: '#262626' }
+    };
+    const elements = stripe.elements({"{{env('STRIPE_KEY')}}",appearance});
+    // const cardNumberElement = elements.create('cardNumber');
+    // const cardExpiryElement = elements.create('cardExpiry');
+    // const cardCvcElement = elements.create('cardCvc');
+    // Create an instance of the card Element
+    const card = elements.create('payment');
+    card.mount('#card-element')
+    // cardNumberElement.mount('#cardNumber-div')
+    // cardExpiryElement.mount('#cardDate-div')
+    // cardCvcElement.mount('#cardCvs-div')
+</script>
 
 
