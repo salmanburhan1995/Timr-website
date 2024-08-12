@@ -154,7 +154,7 @@
                 </h3>
                 <p class="fw-400 f-16 line-h-15">{{ translateContent('companies onboard Timr, efficiently
                 managing temporary workers',  $translationService) }}</p>
-                <a href="#" class="btn btn-primary ">{{ translateContent('Sign Up For Free',  $translationService) }}</a>
+                <a href="#" class="btn btn-primary ">@lang('messages.sign_free')</a>
                 </div>
                 <div class="col-lg-2 position-relative mb-2">
                     <img src="{{ asset('frontend/assets/img/ca-3.svg') }}" class="img-fluid rounded ca-2" alt="">

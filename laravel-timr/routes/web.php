@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\frontend\AbcController;
+use App\Http\Controllers\frontend\LocalController;
 
 /*Route::get('/', function () {
     //return view('welcome');
@@ -26,4 +27,5 @@ use App\Http\Controllers\frontend\AbcController;
     Route::get('/verify/wait/number', [HomeController::class, 'verifyNumber'])->name('verify.opt.wait.number');
 
 //});
-Route::get('lang/{locale}',[HomeController::class , 'change'])->name('lang.switch');
+//Route::get('lang/{locale}',[HomeController::class , 'change'])->name('lang.switch');
+Route::get('lang/{locale}',[LocalController::class , 'change'])->name('lang.switch');

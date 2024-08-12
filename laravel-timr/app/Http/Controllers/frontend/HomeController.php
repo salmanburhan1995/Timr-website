@@ -17,7 +17,7 @@ class HomeController extends Controller
         $this->translationService = $translationService;
     }*/
 
-    public function change($locale)
+    /*public function change($locale)
     {
         if (in_array($locale, ['en', 'da','no' ,'de' ,'pl','sv'])) {
             Session::put('locale', $locale);
@@ -28,7 +28,7 @@ class HomeController extends Controller
             \Log::info('Locale switched to default: ' . config('app.locale'));
         }
         return redirect()->back();
-    }
+    }*/
 
     public function index(Request $request)
     {

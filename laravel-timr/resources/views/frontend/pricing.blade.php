@@ -17,10 +17,10 @@
                                     {{ translateContent('Feature',  $translationService) }}
                                 </th>
                                 <th>
-                                    {{ translateContent('Free',  $translationService) }}
+                                    @lang('messages.free')
                                 </th>
                                 <th>
-                                    {{ translateContent('Pro',  $translationService) }}
+                                    @lang('messages.pro')
                                 </th>
                             </tr>
                         </thead>
