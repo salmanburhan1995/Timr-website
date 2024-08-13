@@ -12,7 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->append(SetLanguage::class);
+      //  $middleware->append(SetLanguage::class);
+        $middleware->web(append:[
+             App\Http\Middleware\SetLanguage::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

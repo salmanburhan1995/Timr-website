@@ -15,9 +15,9 @@
                         {{ translateContent('An intuitive employee time management software streamlining scheduling, tracking,', $translationService) }}
                         <br> {{ translateContent('and optimizing workforce productivity.', $translationService) }}
                     </p>
-                    <a href="#" class="btn btn-primary wow animate__animated animate__fadeInDown">{{ translateContent('Sign Up For Free', $translationService) }}</a>
+                    <a href="#" class="btn btn-primary wow animate__animated animate__fadeInDown">@lang('messages.sign_free')</a>
                     <div class="d-flex justify-content-center align-items-center pt-4 pb-5 wow animate__animated animate__fadeInDown"> <img
-                            src="{{ asset('frontend/assets/img/fi-rr-credit-card.svg') }}" class="px-2" alt=""> {{ translateContent('No credit card required', $translationService) }} </div>
+                            src="{{ asset('frontend/assets/img/fi-rr-credit-card.svg') }}" class="px-2" alt="">@lang('messages.no_credit')</div>
                 </div>
             </div>
         </div>
@@ -73,7 +73,7 @@
                         {{ translateContent('Our mission is to provide you with seamless and efficient tools to
                         effortlessly manage your temporary workforce, ensuring that your staffing needs are met with
                         ease. We are dedicated to simplifying the complexities of temporary employment.',  $translationService) }}</p>
-                    <a href="#" class="btn btn-primary color-1 mt-4 mb-4">{{ translateContent('Sign Up For Free',  $translationService) }}</a>
+                    <a href="#" class="btn btn-primary color-1 mt-4 mb-4">@lang('messages.sign_free')</a>
                 </div>
             </div>
 
@@ -410,7 +410,7 @@
                             <h2 class="f-32 fw-600 pt-2">{{ translateContent('Timesheets for transparent workforce management',  $translationService) }} </h2>
                             <p class="f-18">{{ translateContent('Employee timesheets provide a streamlined and efficient way to track work
                                 hours and activities within an organization.',  $translationService) }} </p>
-                            <a href="#" class="btn btn-primary color-1 bg-darks color-b mt-4 ">{{ translateContent('Sign Up For Free',  $translationService) }}</a>
+                            <a href="#" class="btn btn-primary color-1 bg-darks color-b mt-4 ">@lang('messages.sign_free')</a>
                         </div>
                         <div class="col-lg-6 position-relative">
                             <img src="{{ asset('frontend/assets/img/timesheet.png') }}" class="" alt="">
@@ -512,7 +512,7 @@
                     <div class="package">
                         <div class="card bg-grey p-3 rounded">
                             <div class="card-body">
-                                <h4 class="f-18 fw-500">{{ translateContent('Free',  $translationService) }}</h4>
+                                <h4 class="f-18 fw-500">@lang('messages.free')</h4>
                                 <h3 class="f-45 fw-500 text2"> $0 </h3>
                                 <h3 class="f-45 fw-500 text1"> $0 </h3>
                                 <p class="f-16 color-d-g">{{ translateContent('Per month',  $translationService) }}</p>
@@ -527,7 +527,7 @@
                                     <li>{{ translateContent('Union Agreements',  $translationService) }}</li>
                                 </ul>
                                 <div class="pt-5">
-                                    <a href="#" class="btn btn-border">{{ translateContent('Select Plan',  $translationService) }}</a>
+                                    <a href="#" class="btn btn-border">@lang('messages.select_plan')</a>
                                 </div>
                             </div>
                         </div>
@@ -537,7 +537,7 @@
                     <div class="package">
                         <div class="card bg-grey p-3 rounded">
                             <div class="card-body">
-                                <h4 class="f-18 fw-500">{{ translateContent('Pro',  $translationService) }}</h4>
+                                <h4 class="f-18 fw-500">@lang('messages.pro')</h4>
                                 <h3 class="f-45 fw-500 text2"> $3 </h3>
                                 <h3 class="f-45 fw-500 text1"> $36 </h3>
                                 <p class="f-16 color-d-g">{{ translateContent('Per user per month',  $translationService) }}</p>
@@ -552,7 +552,7 @@
                                     <li>{{ translateContent('Union Agreements',  $translationService) }}</li>
                                 </ul>
                                 <div class="pt-5">
-                                    <a href="#" class="btn btn-border">{{ translateContent('Select Plan',  $translationService) }}</a>
+                                    <a href="#" class="btn btn-border">@lang('messages.select_plan')</a>
                                 </div>
                             </div>
                         </div>

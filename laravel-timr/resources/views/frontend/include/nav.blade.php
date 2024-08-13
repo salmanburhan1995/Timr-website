@@ -29,28 +29,28 @@
                 <button type="button" class="menu-mobile-close"><i class="fa-solid fa-close"></i></button>
               </div>
               <ul class="menu-section ">
-                <li><a href="{{ route('index') }}">{{ translateContent('home', $translationService) }}</a></li>
+                <li><a href="{{ route('index') }}">@lang('messages.home'){{--{{ __('home') }}--}}{{--{{ translateContent('home', $translationService) }}--}}</a></li>
                 <li class="menu-item-has-children ">
-                  <a href="{{ route('price') }}">{{ translateContent('pricing', $translationService) }}</a>
+                  <a href="{{ route('price') }}">@lang('messages.price'){{--{{ translateContent('pricing', $translationService) }}--}}</a>
                 </li>
                 <li class="menu-item-has-children">
-                  <a href="{{ route('aboutus') }}">{{ translateContent('About Us', $translationService) }} </a>
+                  <a href="{{ route('aboutus') }}">@lang('messages.about_us'){{--{{ translateContent('About Us', $translationService) }}--}} </a>
                 </li>
                 <li class="menu-item-has-children">
-                  <a href="{{ route('feature') }}">{{ translateContent('Features', $translationService) }} </a>
+                  <a href="{{ route('feature') }}">@lang('messages.features'){{--{{ translateContent('Features', $translationService) }}--}} </a>
                 </li>
                 <li class="menu-item-has-children d-lg-none  d-sm-block">
-                  <a href="{{ route('signup') }}">{{ translateContent('Sign In', $translationService) }} </a>
+                  <a href="{{ route('signup') }}">{{--{{ translateContent('Sign In', $translationService) }}--}} </a>
                 </li>
                 <li class="menu-item-has-children  d-lg-none d-sm-block">
-                  <a href="{{ route('signup') }}">{{ translateContent('Sign Up', $translationService) }} </a>
+                  <a href="{{ route('signup') }}">{{--{{ translateContent('Sign Up', $translationService) }}--}} </a>
                 </li>
               </ul>
             </nav>
           </div>
           <div class="header-item-right">
-            <a href="{{ route('signup') }}" class="px-5 text-dark fw-500 f-18 m-none" >{{ translateContent('Sign In', $translationService) }}</a>
-            <a href="{{ route('signup') }}" class="btn btn-primary btn-hover m-none">{{ translateContent('Beta Sign-Up', $translationService) }}</a>
+            <a href="{{ route('signup') }}" class="px-5 text-dark fw-500 f-18 m-none" >@lang('messages.sign_in'){{--{{ translateContent('Sign In', $translationService) }}--}}</a>
+            <a href="{{ route('signup') }}" class="btn btn-primary btn-hover m-none">@lang('messages.beta_sign'){{--{{ translateContent('Beta Sign-Up', $translationService) }}--}}</a>
 
            <!-- Language Dropdown -->
               <li class="nav-item dropdown m-none">

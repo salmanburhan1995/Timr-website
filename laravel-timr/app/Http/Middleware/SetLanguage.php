@@ -3,11 +3,15 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Session;
+
 use Illuminate\Support\Facades\View;
 use App\Services\TranslationService;
+
+//use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Symfony\Component\HttpFoundation\Response;
 
 class SetLanguage
 {
@@ -17,30 +21,22 @@ class SetLanguage
     {
         $this->translationService = $translationService;
     }
-
-    public function handle(Request $request, Closure $next)
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     */
+    public function handle(Request $request, Closure $next): Response
     {
-        /*if ($request->has('lang')) {
-            session(['lang' => $request->query('lang')]);
-        }*/
+        /*$lang = session('locale', 'en');*/
 
-        //app()->setLocale(session('lang', 'en'));
 
-       /* if ($request->session()->has('locale')) {
-
-            App::setLocale($request->session()->get('locale', 'en'));
-
-        }*/
-       /* $locale = Session::get('locale', config('app.locale'));
+        $locale = Session::get('locale') ?? 'en';
+        Session::put('locale', $locale);
         App::setLocale($locale);
 
-        \Log::info('Current locale: ' . $locale);*/
-
-        $lang = session('locale', 'en');
-
         View::share('translationService', $this->translationService);
-        View::share('lang', $lang);
-
+        View::share('lang', $locale);
 
         return $next($request);
     }

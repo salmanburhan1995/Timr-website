@@ -89,7 +89,7 @@
                     <div class="team">
                         <img src="{{ asset('frontend/assets/img/team/t-1.svg') }}" class="img-fluid" alt="">
                         <div class="content">
-                          <p>  {{ translateContent('Ammy Watson - CEO',  $translationService) }}</p>
+                          <p>  Ammy Watson - CEO</p>
                         </div>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                     <div class="team">
                         <img src="{{ asset('frontend/assets/img/team/t-2.svg') }}" class="img-fluid" alt="">
                         <div class="content">
-                          <p> {{ translateContent('Kenny Grey - COO',  $translationService) }}</p>
+                          <p> Kenny Grey - COO</p>
                         </div>
                     </div>
                 </div>
