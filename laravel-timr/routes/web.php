@@ -17,7 +17,7 @@ use App\Http\Controllers\frontend\StripePaymentController;
     Route::get('/price', [HomeController::class, 'price'])->name('price');
     Route::get('/feature', [HomeController::class, 'feature'])->name('feature');
     Route::get('/signup', [HomeController::class, 'signup'])->name('signup');
-    Route::get('/payment', [HomeController::class, 'payment'])->name('payment');
+    Route::get('/payment/{rate}', [HomeController::class, 'payment'])->name('payment');
     Route::get('/payment/confirm', [HomeController::class, 'paymentConfirm'])->name('payment.confirm');
     Route::get('/signup/company', [HomeController::class, 'signupCompany'])->name('signup.company');
     Route::get('/signup/email', [HomeController::class, 'signupEmail'])->name('signup.email');

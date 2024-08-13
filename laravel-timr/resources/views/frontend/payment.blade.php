@@ -39,18 +39,18 @@ $("input").intlTelInput({
         <div class="row">
             <div class="col-lg-6 px-4">
                 <p>{{ translateContent('Subscribe to timr Pro plan', $translationService) }}</p>
-                <h4> <span class="f-32 fw-600">$0</span> <sub class="f-16 fw-400">/month</sub></h4>
-                <h5 class="f-20 fw-600 d-flex justify-content-between"> <span>{{ translateContent('1 item x timr Pro plan', $translationService) }}</span> <span class="f-20 fw-600 text-right text-end">$400</span></h5>
+                <h4> <span class="f-32 fw-600">${{$rate}}</span> <sub class="f-16 fw-400">/month</sub></h4>
+                <h5 class="f-20 fw-600 d-flex justify-content-between"> <span>{{ translateContent('1 item x timr Pro plan', $translationService) }}</span> <span class="f-20 fw-600 text-right text-end">${{$rate}}</span></h5>
                 <p class="ps-5">{{ translateContent('A single license for individual use.', $translationService) }}</p>
                 <hr>
                 <form action="" class="ps-5 pb-3">
                     <div class="form-group">
-                        <label for="" class="d-flex justify-content-between"><span>{{ translateContent('Subtotal', $translationService) }}</span><span>$400</span></label>
+                        <label for="" class="d-flex justify-content-between"><span>{{ translateContent('Subtotal', $translationService) }}</span><span>${{$rate}}</span></label>
                         <input type="text" class="form-control" placeholder="Add coupon code">
                     </div>
                 </form>
                 <hr>
-                <label for="" class="ps-5  d-flex justify-content-between"><span>{{ translateContent('Subtotal', $translationService) }}</span><span>$400</span></label>
+                <label for="" class="ps-5  d-flex justify-content-between"><span>{{ translateContent('Subtotal', $translationService) }}</span><span>${{$rate}}</span></label>
             </div>
 
             <div class="col-lg-6 border-left-1 px-4">
@@ -59,23 +59,26 @@ $("input").intlTelInput({
                 <form action="{{route('stripe.payment')}}" method="POST" id="payment-form">
                     @csrf
                     <div id="card-element"></div>
-                    <div class="form-group mb-2" id="cardName-div">
-                        <label for="" class="fw-500">{{ translateContent('Card Holder’s Name', $translationService) }}</label>
-                        <input type="text" class="form-control" placeholder="Add Card Holder’s Name" id="cardName" name="cardName">
-                    </div>
-                    <div class="form-group mb-2 form-control" id="cardNumber-div">
-                        <label for=""  class="fw-500">{{ translateContent('Card Information', $translationService) }}</label>
-                        <input type="text" class="form-control" placeholder="Add Card Number" id="cardNumber" name="cardNumber">
-                    </div>
-                    <div class="form-group mb-2" id="cardDate-div">
-                        <label for=""  class="fw-500">MM/YY</label>
-                        <input type="text" class="form-control" placeholder="MM/YY" id="cardExpDate"  name="cardExpDate">
-                    </div>
-                    <div class="form-group mb-2" id="cardCvs-div">
-                        <label for=""  class="fw-500">CVS</label>
-                        <input type="text" class="form-control" placeholder="CVS" id="cardCVS" name="cardCVS">
-                    </div>
-                    <button type="Submit" class="btn btn-primary btn-block mt-3 mb-4" style="width:100%">{{ translateContent('Sign Up', $translationService) }}</button>
+                    <input type="hidden" name="rate" value="{{$rate}}">
+                    <input type='hidden' name='stripeToken' id='stripe-token-id'>
+                    {{--                    <div class="form-group mb-2" id="cardName-div">--}}
+{{--                        <label for="" class="fw-500">{{ translateContent('Card Holder’s Name', $translationService) }}</label>--}}
+{{--                        <input type="text" class="form-control" placeholder="Add Card Holder’s Name" id="cardName" name="cardName">--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group mb-2 form-control" id="cardNumber-div">--}}
+{{--                        <label for=""  class="fw-500">{{ translateContent('Card Information', $translationService) }}</label>--}}
+{{--                        <input type="text" class="form-control" placeholder="Add Card Number" id="cardNumber" name="cardNumber">--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group mb-2" id="cardDate-div">--}}
+{{--                        <label for=""  class="fw-500">MM/YY</label>--}}
+{{--                        <input type="text" class="form-control" placeholder="MM/YY" id="cardExpDate"  name="cardExpDate">--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group mb-2" id="cardCvs-div">--}}
+{{--                        <label for=""  class="fw-500">CVS</label>--}}
+{{--                        <input type="text" class="form-control" placeholder="CVS" id="cardCVS" name="cardCVS">--}}
+{{--                    </div>--}}
+                    <button type="button" class="btn btn-primary btn-block mt-3 mb-4" style="width:100%" id='pay-btn' onclick="createToken()">{{ translateContent('Sign Up', $translationService) }}</button>
+{{--                    <p class="error">{{ Session::error() }}</p>--}}
                     <p id="payment-result">{{ translateContent('By placing order you agree to Terms of Service & Privacy Policy.', $translationService) }}</p>
                 </form>
             </div>
@@ -86,20 +89,46 @@ $("input").intlTelInput({
 <script src="https://js.stripe.com/v3/"></script>
 <script>
     const stripe = Stripe("{{env('STRIPE_KEY')}}")
-    const appearance = {
-        theme: 'flat',
-        variables: { colorPrimaryText: '#262626' }
-    };
-    const elements = stripe.elements({"{{env('STRIPE_KEY')}}",appearance});
-    // const cardNumberElement = elements.create('cardNumber');
+    // const options = {
+    //     layout: {
+    //         type: 'tabs',
+    //         defaultCollapsed: false,
+    //     }
+    // };
+    const elements = stripe.elements();
+    // const options = {
+    //     layout: {
+    //         type: 'tabs',
+    //         defaultCollapsed: false,
+    //     }
+    // };
+    // const cardNumberElement = elements.create('cardNumber',options);
     // const cardExpiryElement = elements.create('cardExpiry');
     // const cardCvcElement = elements.create('cardCvc');
-    // Create an instance of the card Element
-    const card = elements.create('payment');
-    card.mount('#card-element')
+    // // Create an instance of the card Element
+    const cardElement = elements.create('card');
+    cardElement.mount('#card-element')
     // cardNumberElement.mount('#cardNumber-div')
     // cardExpiryElement.mount('#cardDate-div')
     // cardCvcElement.mount('#cardCvs-div')
+
+    function createToken() {
+        document.getElementById("pay-btn").disabled = true;
+        stripe.createToken(cardElement).then(function(result) {
+
+            if(typeof result.error != 'undefined') {
+                document.getElementById("pay-btn").disabled = false;
+                alert(result.error.message);
+            }
+
+            /* creating token success */
+            if(typeof result.token != 'undefined') {
+                document.getElementById("stripe-token-id").value = result.token.id;
+                document.getElementById('payment-form').submit();
+            }
+        });
+    }
+
 </script>
 
 

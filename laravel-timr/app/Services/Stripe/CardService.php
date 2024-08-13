@@ -10,9 +10,10 @@ class CardService{
         $this->stripe = new StripeClient(env('STRIPE_SECRET'));
     }
     // Create the stripe card token
-    protected function createToken($card){
+    public function createToken($card){
         try{
-            return $this->stripe->tokens->create([
+            return $this->stripe->paymentMethods->create([
+                'type' => 'card',
                 'card'=>[
                     'number' => $card['number'],
                     'exp_month' => $card['exp_month'],

@@ -44,7 +44,7 @@
                                     <li>Union Agreements</li>
                                 </ul>
                                 <div class="pt-5">
-                                    <a href="{{ route('payment') }}" class="btn btn-border">Select Plan</a>
+                                    <a href="{{ route('payment',['rate' => base64_encode(0)]) }}" class="btn btn-border">Select Plan</a>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                     <li>Union Agreements</li>
                                 </ul>
                                 <div class="pt-5">
-                                    <a href="{{ route('payment') }}" class="btn btn-border">{{ __('Select Plan') }}</a>
+                                    <a href="#" class="btn btn-border" id="pro-btn">{{ __('Select Plan') }}</a>
                                 </div>
                             </div>
                         </div>

@@ -69,9 +69,10 @@ class HomeController extends Controller
         return view('frontend.signup');
     }
 
-    public function payment()
+    public function payment($rate)
     {
-        return view('frontend.payment');
+        $rate = base64_decode($rate);
+        return view('frontend.payment',compact('rate'));
     }
 
     public function paymentConfirm()
