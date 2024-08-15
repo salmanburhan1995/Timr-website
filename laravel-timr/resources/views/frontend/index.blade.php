@@ -527,7 +527,7 @@
                                     <li>{{ translateContent('Union Agreements',  $translationService) }}</li>
                                 </ul>
                                 <div class="pt-5">
-                                    <a href="#" class="btn btn-border">@lang('messages.select_plan')</a>
+                                    <a href="{{ route('payment',['rate' => base64_encode(0)]) }}" class="btn btn-border" >@lang('messages.select_plan')</a>
                                 </div>
                             </div>
                         </div>
@@ -552,7 +552,7 @@
                                     <li>{{ translateContent('Union Agreements',  $translationService) }}</li>
                                 </ul>
                                 <div class="pt-5">
-                                    <a href="#" class="btn btn-border">@lang('messages.select_plan')</a>
+                                    <a href="#" class="btn btn-border" id="pro-btn">@lang('messages.select_plan')</a>
                                 </div>
                             </div>
                         </div>

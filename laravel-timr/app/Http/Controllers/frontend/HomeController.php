@@ -11,6 +11,8 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use PHPUnit\Exception;
+use App\Http\Requests\UserSignupRequest;
 
 class HomeController extends Controller
 {
@@ -123,30 +125,35 @@ class HomeController extends Controller
         try {
 
             $user = Socialite::driver('google')->user();
-
+            $userEmail = User::where('email', $user->email)->first();
             $finduser = User::where('google_id', $user->id)->first();
+            if(!$userEmail)
+            {
+                if($finduser){
 
-            if($finduser){
+                    Auth::login($finduser);
 
-                Auth::login($finduser);
+                    return redirect()->intended('signup');
 
-                return redirect()->intended('signup');
+                }else{
+                    $newUser = User::create([
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'google_id'=> $user->id,
+                        'password' => Hash::make('12345678')
+                    ]);
 
+                    Auth::login($newUser);
+
+                    return redirect()->intended('signup');
+                }
             }else{
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'google_id'=> $user->id,
-                    'password' => Hash::make('12345678')
-                ]);
-
-                Auth::login($newUser);
-
-                return redirect()->intended('signup');
+                return redirect()->intended('signup')->with('error','User already exists');
             }
 
+
         } catch (Exception $e) {
-            return redirect()->intended('signup',500);
+            return redirect()->intended('signup')->with('error',$e->getMessage());
 
         }
     }
@@ -159,31 +166,50 @@ class HomeController extends Controller
         try {
 
             $user = Socialite::driver('linkedin-openid')->user();
+            $userEmail = User::where('email', $user->email)->first();
+            if(!$userEmail)
+            {
+                $finduser = User::where('linkedin_id', $user->id)->first();
 
-            $finduser = User::where('linkedin_id', $user->id)->first();
+                if($finduser){
 
-            if($finduser){
+                    Auth::login($finduser);
 
-                Auth::login($finduser);
+                    return redirect()->intended('signup');
 
-                return redirect()->intended('signup');
+                }else{
+                    $newUser = User::create([
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'linkedin_id'=> $user->id,
+                        'password' => Hash::make('12345678')
+                    ]);
 
+                    Auth::login($newUser);
+
+                    return redirect()->intended('signup');
+                }
             }else{
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'linkedin_id'=> $user->id,
-                    'password' => Hash::make('12345678')
-                ]);
-
-                Auth::login($newUser);
-
-                return redirect()->intended('signup');
+                return redirect()->intended('signup')->with('error','User already exists');
             }
 
-        } catch (Exception $e) {
-            return redirect()->intended('signup',500);
 
+        } catch (Exception $e) {
+            return redirect()->intended('signup')->with('error',$e->getMessage());
+
+        }
+    }
+
+    public function storeSignup(UserSignupRequest $request){
+        try{
+            $newUser = User::create([
+                'name'=>$request->email,
+                'email' => $request->email,
+                'password' => Hash::make('12345678')
+            ]);
+            return redirect('/signup')->with('success', 'Signup successful!');
+        }catch (Exception $exception){
+            return back()->with('error_message', 'Error! ' . $exception->getMessage());
         }
     }
 

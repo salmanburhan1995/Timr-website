@@ -36,3 +36,4 @@ Route::get('auth/google', [HomeController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [HomeController::class, 'handleGoogleCallback']);
 Route::get('auth/linkedin', [HomeController::class, 'redirectToLinkedin']);
 Route::get('auth/linkedin/callback', [HomeController::class, 'handleLinkedinCallback']);
+Route::post('auth/signup',[HomeController::class, 'storeSignup'])->name('signupStore');
