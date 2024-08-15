@@ -32,3 +32,7 @@ use App\Http\Controllers\frontend\LocalController;
 Route::get('lang/{locale}',[LocalController::class , 'change'])->name('lang.switch');
 //Route::get('lang/{locale}',[HomeController::class , 'change'])->name('lang.switch');
 Route::post('stripe-payment',[StripePaymentController::class,'payment'])->name('stripe.payment');
+Route::get('auth/google', [HomeController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [HomeController::class, 'handleGoogleCallback']);
+Route::get('auth/linkedin', [HomeController::class, 'redirectToLinkedin']);
+Route::get('auth/linkedin/callback', [HomeController::class, 'handleLinkedinCallback']);

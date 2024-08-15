@@ -37,8 +37,8 @@
                     <button class="btn btn-primary btn-block mt-3 mb-4" style="width:100%">{{ translateContent('Sign Up',  $translationService) }}</button>
                     <p>{{ translateContent('By placing order you agree to Terms of Service & Privacy Policy.',  $translationService) }}</p>
                     <p class="orline">{{ translateContent('or',  $translationService) }}</p>
-                    <button class="btn btn-border btn-block mt-3 mb-4 d-flex justify-content-center align-item-center" style="width:100%"> <img src="{{ asset('frontend/assets/img/google.svg') }}" alt="">Sign up with Google</button>
-                    <button class="btn btn-border btn-block mt-3 mb-4 d-flex justify-content-center align-item-center" style="width:100%"> <img src="{{ asset('frontend/assets/img/linkedin.svg') }}" alt="">Sign up with Linkedin</button>
+                    <a href="{{ url('auth/google') }}" class="btn btn-border btn-block mt-3 mb-4 d-flex justify-content-center align-item-center" style="width:100%"> <img src="{{ asset('frontend/assets/img/google.svg') }}" alt="">Sign up with Google</a>
+                    <a href="{{ url('auth/linkedin') }}" class="btn btn-border btn-block mt-3 mb-4 d-flex justify-content-center align-item-center" style="width:100%"> <img src="{{ asset('frontend/assets/img/linkedin.svg') }}" alt="">Sign up with Linkedin</a>
 
                 </form>
             </div>

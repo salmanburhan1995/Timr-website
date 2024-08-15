@@ -51,7 +51,6 @@ class StripePaymentController extends Controller
                 'source' =>$request->stripeToken,
                 'description' => 'Test payment',
             ]));
-            dd($charge );
             return redirect('/signup')->with('success', 'Payment successful!');
         }catch (\Exception $exception){
             dd($exception->getMessage() );

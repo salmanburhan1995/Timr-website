@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\TranslationService;
 use Illuminate\Support\Facades\Session;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -108,6 +112,79 @@ class HomeController extends Controller
     public function verifyNumber()
     {
         return view('frontend.verify-otp-wait-number');
+    }
+
+    public function redirectToGoogle(){
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleGoogleCallback()
+    {
+        try {
+
+            $user = Socialite::driver('google')->user();
+
+            $finduser = User::where('google_id', $user->id)->first();
+
+            if($finduser){
+
+                Auth::login($finduser);
+
+                return redirect()->intended('signup');
+
+            }else{
+                $newUser = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'google_id'=> $user->id,
+                    'password' => Hash::make('12345678')
+                ]);
+
+                Auth::login($newUser);
+
+                return redirect()->intended('signup');
+            }
+
+        } catch (Exception $e) {
+            return redirect()->intended('signup',500);
+
+        }
+    }
+
+    public function redirectToLinkedin(){
+        return Socialite::driver('linkedin-openid')->redirect();
+    }
+    public function handleLinkedinCallback()
+    {
+        try {
+
+            $user = Socialite::driver('linkedin-openid')->user();
+
+            $finduser = User::where('linkedin_id', $user->id)->first();
+
+            if($finduser){
+
+                Auth::login($finduser);
+
+                return redirect()->intended('signup');
+
+            }else{
+                $newUser = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'linkedin_id'=> $user->id,
+                    'password' => Hash::make('12345678')
+                ]);
+
+                Auth::login($newUser);
+
+                return redirect()->intended('signup');
+            }
+
+        } catch (Exception $e) {
+            return redirect()->intended('signup',500);
+
+        }
     }
 
 }
