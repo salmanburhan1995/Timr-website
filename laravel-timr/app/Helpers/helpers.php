@@ -33,7 +33,7 @@ function translateContent($content, TranslationService $translationService)
     }
 
     // Cache the translated content for future use
-    Cache::put($cacheKey, $translatedContent, now()->addHours(24)); // Cache for 24 hours
+    Cache::put($cacheKey, $translatedContent, now()->addHours(48));
 
     return $translatedContent;
 }
