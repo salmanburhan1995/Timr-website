@@ -18,7 +18,7 @@
                 <div class="col-lg-1"></div>
             <div class="col-lg-5 px-5">
                 <img src="{{ asset('frontend/assets/img/logo.svg') }}" class="img-fluid round mx-auto mb-3" alt="">
-                <h2 class="fw-600 f-20 text-center">{{ translateContent('Create your account',  $translationService) }}</h2>
+                <h2 class="fw-600 f-20 text-center">{{ translateContent('Create your account!!',  $translationService) }}</h2>
                 <p class="text-center">{{ translateContent('Enter the answer for following fields and get started',  $translationService) }}</p>
                 <form action="{{route('signupStore')}}" method="POST" >
                     @csrf
