@@ -53,7 +53,6 @@ class StripePaymentController extends Controller
             ]));
             return redirect('/signup')->with('success', 'Payment successful,please signup');
         }catch (\Exception $exception){
-            dd($exception->getMessage() );
             return back()->with('error_message', 'Error! ' . $exception->getMessage());
 
         }
