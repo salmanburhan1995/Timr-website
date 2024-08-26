@@ -1,44 +1,49 @@
-name: Deploy Laravel Application
+name: SSH Connection Test
 
 on:
   push:
     branches:
-      - Dev  # Trigger on pushes to the main branch
+      - Dev  # Trigger on pushes to the Dev branch
 
 jobs:
-  deploy:
+  test-ssh:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up SSH
+      - name: Setup SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Sync code to server
+      - name: Add server to known_hosts
         run: |
-          rsync -avz --delete ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/laravel-timr/
+          mkdir -p ~/.ssh
+          ssh-keyscan ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Test SSH Connection
+        run: |
+          echo "Testing SSH connection to ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}"
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo SSH connection established successfully"
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Run deployment script
+      - name: Manage Directories on Server
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             # Backup the current Laravel directory
-            sudo mv /var/www/laravel-timr ~/bu_laravel_timr
+            if [ -d /var/www/laravel-timr ]; then
+              sudo mv /var/www/laravel-timr ~/bu_laravel_timr
+            fi
 
             # Create a new directory for the updated application
-            sudo mkdir /var/www/laravel-timr
-
-            # Move to the new directory
-            cd /var/www/laravel-timr
+            sudo mkdir -p /var/www/laravel-timr
 
             # Set permissions
             sudo chown -R www-data:www-data /var/www/laravel-timr
             sudo chmod -R 755 /var/www/laravel-timr
-
+          EOF
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
