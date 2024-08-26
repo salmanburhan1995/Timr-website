@@ -23,17 +23,19 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
+      - name: Ensure Temporary Directory on Server
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p /tmp/laravel-timr"
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: Copy Fresh Code to Temporary Directory on Server
         run: |
-          # Define the source directory path and the temporary directory path
-          SOURCE_DIR="$(pwd)"
-          TEMP_DIR="/tmp/laravel-timr"
-
-          # Ensure the temporary directory exists on the server
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p $TEMP_DIR"
+          # Define the source directory path
+          SOURCE_DIR="${GITHUB_WORKSPACE}"
 
           # Copy files to the temporary directory on the server
-          scp -r $SOURCE_DIR/. ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:$TEMP_DIR
+          scp -r -v $SOURCE_DIR/. ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/tmp/laravel-timr
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
