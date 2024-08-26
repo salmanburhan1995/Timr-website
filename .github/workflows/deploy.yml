@@ -3,7 +3,7 @@ name: SSH Connection Test
 on:
   push:
     branches:
-      - Dev  # Trigger on pushes to the Dev 
+      - Dev  # Trigger on pushes to the Dev branch
 
 jobs:
   test-ssh:
@@ -33,6 +33,11 @@ jobs:
       - name: Manage Directories on Server
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            # Check if the backup directory exists and delete it if it does
+            if [ -d ~/bu_laravel_timr ]; then
+              sudo rm -rf ~/bu_laravel_timr
+            fi
+
             # Backup the current Laravel directory
             if [ -d /var/www/laravel-timr ]; then
               sudo mv /var/www/laravel-timr ~/bu_laravel_timr
@@ -45,5 +50,11 @@ jobs:
             sudo chown -R www-data:www-data /var/www/laravel-timr
             sudo chmod -R 755 /var/www/laravel-timr
           EOF
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Restart Apache2
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "sudo systemctl restart apache2"
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
