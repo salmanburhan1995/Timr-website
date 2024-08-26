@@ -11,7 +11,51 @@ jobs:
 
     steps:
       - name: Checkout code
+        uses: actions/checkout@v3name: Deploy Laravel Application
+
+on:
+  push:
+    branches:
+      - main  # Trigger on pushes to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Sync code to server
+        run: |
+          rsync -avz --delete ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/laravel-timr/
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Run deployment script
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            # Backup the current Laravel directory
+            sudo mv /var/www/laravel-timr ~/bu_laravel_timr
+
+            # Create a new directory for the updated application
+            sudo mkdir /var/www/laravel-timr
+
+            # Move to the new directory
+            cd /var/www/laravel-timr
+
+            # Set permissions
+            sudo chown -R www-data:www-data /var/www/laravel-timr
+            sudo chmod -R 755 /var/www/laravel-timr
+
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
 
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.5.3
