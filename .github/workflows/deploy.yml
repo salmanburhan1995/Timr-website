@@ -32,10 +32,10 @@ jobs:
       - name: Copy Fresh Code to Temporary Directory on Server
         run: |
           # Define the source directory path
-          SOURCE_DIR="${GITHUB_WORKSPACE}"
-
+          SOURCE_DIR="${GITHUB_WORKSPACE}/"
+          
           # Copy files to the temporary directory on the server
-          scp -r -v $SOURCE_DIR/. ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/tmp/laravel-timr
+          scp -r -v "$SOURCE_DIR" ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/tmp/laravel-timr/
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
