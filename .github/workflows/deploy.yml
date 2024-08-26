@@ -3,7 +3,7 @@ name: SSH Connection Test
 on:
   push:
     branches:
-      - Dev  # Trigger on pushes to the Dev branch
+      - Dev  # Trigger on pushes to the Dev 
 
 jobs:
   test-ssh:
