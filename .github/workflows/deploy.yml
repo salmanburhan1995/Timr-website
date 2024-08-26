@@ -56,7 +56,7 @@ jobs:
       - name: Copy Fresh Code to Server
         run: |
           # Ensure the target directory is empty or correctly handled
-          scp -r ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/tmp/laravel-timr
+          scp -r ./* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/tmp/laravel-timr
           
           # Move files from the temporary directory to the target directory with correct permissions
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
