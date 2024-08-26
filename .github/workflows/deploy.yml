@@ -25,4 +25,7 @@ jobs:
 
       - name: Test SSH Connection
         run: |
+          echo "Testing SSH connection to ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}"
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo SSH connection established successfully"
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
