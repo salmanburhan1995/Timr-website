@@ -25,8 +25,15 @@ jobs:
 
       - name: Copy Fresh Code to Temporary Directory on Server
         run: |
-          # Copy files to a temporary directory on the server
-          scp -r ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/tmp/laravel-timr
+          # Define the source directory path and the temporary directory path
+          SOURCE_DIR="$(pwd)"
+          TEMP_DIR="/tmp/laravel-timr"
+
+          # Ensure the temporary directory exists on the server
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p $TEMP_DIR"
+
+          # Copy files to the temporary directory on the server
+          scp -r $SOURCE_DIR/. ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:$TEMP_DIR
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
@@ -55,7 +62,6 @@ jobs:
 
       - name: Move Code from Temporary Directory to Target Directory
         run: |
-          # Move files from the temporary directory to the target directory with correct permissions
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             sudo mv /tmp/laravel-timr/* /var/www/laravel-timr/
             sudo chown -R www-data:www-data /var/www/laravel-timr
