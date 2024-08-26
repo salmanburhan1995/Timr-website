@@ -23,10 +23,10 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Test SSH Connection
+      - name: Copy Fresh Code to Temporary Directory on Server
         run: |
-          echo "Testing SSH connection to ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}"
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo SSH connection established successfully"
+          # Copy files to a temporary directory on the server
+          scp -r ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/tmp/laravel-timr
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
@@ -53,11 +53,8 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Copy Fresh Code to Server
+      - name: Move Code from Temporary Directory to Target Directory
         run: |
-          # Ensure the target directory is empty or correctly handled
-          scp -r ./* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/tmp/laravel-timr
-          
           # Move files from the temporary directory to the target directory with correct permissions
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             sudo mv /tmp/laravel-timr/* /var/www/laravel-timr/
