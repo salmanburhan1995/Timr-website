@@ -3,7 +3,7 @@ name: Deploy Laravel Application
 on:
   push:
     branches:
-      - Dev  # Trigger on pushes to the 
+      - main  # Trigger on pushes to the main branch
 
 jobs:
   deploy:
@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up SSH
+      - name: Setup SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -35,8 +35,8 @@ jobs:
             sudo mv /var/www/laravel-timr ~/bu_laravel_timr
             sudo mkdir /var/www/laravel-timr
             cd /var/www/laravel-timr
-            sudo chown -R ${{ secrets.SSH_USER }}: .  # Ensure correct ownership
-            sudo chmod -R u+w .  # Ensure correct permissions
+            sudo chown -R ${{ secrets.SSH_USER }}: .
+            sudo chmod -R u+w .
           EOF
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
