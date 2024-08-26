@@ -55,7 +55,15 @@ jobs:
 
       - name: Copy Fresh Code to Server
         run: |
-          rsync -avz --exclude='.git' --exclude='.github' ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/laravel-timr
+          # Copy files to a temporary directory on the server
+          scp -r ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/tmp/laravel-timr
+
+          # Move files from the temporary directory to the target directory with correct permissions
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            sudo mv /tmp/laravel-timr/* /var/www/laravel-timr/
+            sudo chown -R www-data:www-data /var/www/laravel-timr
+            sudo chmod -R 755 /var/www/laravel-timr
+          EOF
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
