@@ -75,6 +75,10 @@ jobs:
       - name: Install Composer Dependencies
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            # Ensure we are in the correct directory
+            cd /var/www/laravel-timr
+
+            # Run Composer Install as www-data
             sudo -u www-data composer install --no-interaction
           EOF
         env:
