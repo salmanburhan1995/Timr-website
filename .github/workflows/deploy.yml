@@ -3,7 +3,7 @@ name: Deploy Laravel Application
 on:
   push:
     branches:
-      - Dev  # Trigger on pushes to
+      - Dev  # Trigger on pushes
 
 jobs:
   deploy:
