@@ -54,9 +54,12 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Set Writable Permissions for Cache Directory
+      - name: Set Up Environment and Cache Permissions
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            sudo mkdir -p /var/www/laravel-timr/bootstrap/cache
+            sudo cp /var/www/bu_laravel-timr/.env /var/www/laravel-timr/
+            sudo chown -R www-data:www-data /var/www/laravel-timr/storage
             sudo chmod -R 775 /var/www/laravel-timr/bootstrap/cache
             sudo chown -R www-data:www-data /var/www/laravel-timr/bootstrap/cache
           EOF
