@@ -3,7 +3,7 @@ name: SSH Connection Test
 on:
   push:
     branches:
-      - Dev  # Trigger on pushes to the Dev 
+      - Dev  # Trigger on pushes to the Dev branch
 
 jobs:
   test-ssh:
@@ -53,7 +53,7 @@ jobs:
             fi
 
             # Create a new directory for the updated application
-            sudo mkdir -p /var/www/laravel-timr
+            sudo mkdir -p /var/www/laravel-timr/bootstrap/cache
 
             # Set permissions
             sudo chown -R www-data:www-data /var/www/laravel-timr
@@ -75,8 +75,7 @@ jobs:
       - name: Install Composer Dependencies
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
-            cd /var/www/laravel-timr
-            sudo composer install --no-interaction
+            sudo -u www-data composer install --no-interaction
           EOF
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
