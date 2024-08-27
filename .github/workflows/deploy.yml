@@ -3,7 +3,7 @@ name: Deploy Laravel Application
 on:
   push:
     branches:
-      - Dev  # Trigger 
+      - Dev  # Trigger on 
 
 jobs:
   deploy:
@@ -63,6 +63,15 @@ jobs:
             sudo chown -R www-data:www-data /var/www/laravel-timr/storage
             sudo chmod -R 775 /var/www/laravel-timr/bootstrap/cache
             sudo chown -R www-data:www-data /var/www/laravel-timr/bootstrap/cache
+          EOF
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Generate Laravel Application Key
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            cd /var/www/laravel-timr
+            sudo -u www-data php artisan key:generate
           EOF
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
