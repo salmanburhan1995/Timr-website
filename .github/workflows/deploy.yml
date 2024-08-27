@@ -65,7 +65,7 @@ jobs:
       - name: Move Code from Temporary Directory to Target Directory
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
-            sudo mv /tmp/laravel-timr/* /var/www/laravel-timr/
+            sudo mv /tmp/laravel-timr/Timr/* /var/www/laravel-timr/
             sudo chown -R www-data:www-data /var/www/laravel-timr
             sudo chmod -R 755 /var/www/laravel-timr
           EOF
