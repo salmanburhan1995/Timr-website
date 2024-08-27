@@ -40,9 +40,6 @@ jobs:
             sudo mkdir -p /var/www/laravel-timr
             sudo chown -R www-data:www-data /var/www/laravel-timr
             sudo chmod -R 755 /var/www/laravel-timr
-            sudo mkdir -p /var/www/laravel-timr/bootstrap/cache
-            sudo chown -R www-data:www-data /var/www/laravel-timr/bootstrap/cache
-            sudo chmod -R 755 /var/www/laravel-timr/bootstrap/cache
           EOF
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -57,7 +54,7 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Verify `composer.json` Presence
+      - name: Verify composer.json Presence
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ls -la /var/www/laravel-timr/composer.json"
 
@@ -65,7 +62,6 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             cd /var/www/laravel-timr
-            sudo -u www-data composer self-update
             sudo -u www-data composer install --no-interaction
           EOF
         env:
@@ -75,10 +71,11 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             cd /var/www/laravel-timr
-            sudo -u www-data php artisan optimize:clear
+            sudo -u www-data php artisan cache:clear
             sudo -u www-data php artisan config:cache
             sudo -u www-data php artisan route:cache
-            sudo -u www-data php artisan view:cache
+            sudo -u www-data php artisan view:clear
+            sudo -u www-data php artisan optimize
           EOF
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
