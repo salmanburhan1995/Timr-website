@@ -59,6 +59,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             sudo mkdir -p /var/www/laravel-timr/bootstrap/cache
             sudo cp /var/www/bu_laravel-timr/.env /var/www/laravel-timr/
+            sudo cp /var/www/bu_laravel-timr/.htaccess /var/www/laravel-timr/
             sudo chown -R www-data:www-data /var/www/laravel-timr/storage
             sudo chmod -R 775 /var/www/laravel-timr/bootstrap/cache
             sudo chown -R www-data:www-data /var/www/laravel-timr/bootstrap/cache
