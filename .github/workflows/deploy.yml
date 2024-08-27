@@ -1,4 +1,4 @@
-name: SSH Connection Test
+name: Deploy Laravel Application
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - Dev  # Trigger on pushes to the Dev branch
 
 jobs:
-  test-ssh:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,39 +23,28 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Ensure Temporary Directory on Server
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p /tmp/laravel-timr"
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-
       - name: Copy Fresh Code to Temporary Directory on Server
         run: |
-          # Define the source directory path
-          SOURCE_DIR="${GITHUB_WORKSPACE}/"
-          
-          # Copy files to the temporary directory on the server
-          scp -r -v "$SOURCE_DIR" ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/tmp/laravel-timr/
+          scp -r -v "${GITHUB_WORKSPACE}/" ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/tmp/laravel-timr/
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Manage Directories on Server
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
-            # Check if the backup directory exists and delete it if it does
+            # Backup and replace existing application directory
             if [ -d ~/bu_laravel_timr ]; then
               sudo rm -rf ~/bu_laravel_timr
             fi
-
-            # Backup the current Laravel directory
             if [ -d /var/www/laravel-timr ]; then
               sudo mv /var/www/laravel-timr ~/bu_laravel_timr
             fi
 
-            # Create a new directory for the updated application
+            # Ensure the target directory exists
+            sudo mkdir -p /var/www/laravel-timr
             sudo mkdir -p /var/www/laravel-timr/bootstrap/cache
 
-            # Set permissions
+            # Set ownership and permissions
             sudo chown -R www-data:www-data /var/www/laravel-timr
             sudo chmod -R 755 /var/www/laravel-timr
           EOF
@@ -65,7 +54,8 @@ jobs:
       - name: Move Code from Temporary Directory to Target Directory
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
-            sudo mv /tmp/laravel-timr/Timr/* /var/www/laravel-timr/
+            # Move code to the target directory and set ownership
+            sudo mv /tmp/laravel-timr/* /var/www/laravel-timr/
             sudo chown -R www-data:www-data /var/www/laravel-timr
             sudo chmod -R 755 /var/www/laravel-timr
           EOF
@@ -75,11 +65,22 @@ jobs:
       - name: Install Composer Dependencies
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
-            # Ensure we are in the correct directory
             cd /var/www/laravel-timr
-
-            # Run Composer Install as www-data
+            # Ensure proper permissions for composer install
             sudo -u www-data composer install --no-interaction
+          EOF
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Run Laravel Artisan Commands
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            cd /var/www/laravel-timr
+            sudo -u www-data php artisan cache:clear
+            sudo -u www-data php artisan config:cache
+            sudo -u www-data php artisan route:cache
+            sudo -u www-data php artisan view:clear
+            sudo -u www-data php artisan optimize
           EOF
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
