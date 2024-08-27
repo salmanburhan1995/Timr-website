@@ -83,11 +83,13 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             cd /var/www/laravel-timr
+            sudo -u www-data php artisan key:generate
             sudo -u www-data php artisan cache:clear
             sudo -u www-data php artisan config:cache
             sudo -u www-data php artisan route:cache
             sudo -u www-data php artisan view:clear
             sudo -u www-data php artisan optimize
+            sudo -u www-data composer dump-autoload
           EOF
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
