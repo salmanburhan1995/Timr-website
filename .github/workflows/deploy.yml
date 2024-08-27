@@ -3,7 +3,7 @@ name: Deploy Laravel Application
 on:
   push:
     branches:
-      - Dev  # Trigger 
+      - Dev  # Trigger on 
 
 jobs:
   deploy:
@@ -59,7 +59,6 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             sudo mkdir -p /var/www/laravel-timr/bootstrap/cache
             sudo cp /var/www/bu_laravel-timr/.env /var/www/laravel-timr/
-            sudo cp /var/www/bu_laravel-timr/.htaccess /var/www/laravel-timr/
             sudo chown -R www-data:www-data /var/www/laravel-timr/storage
             sudo chmod -R 775 /var/www/laravel-timr/bootstrap/cache
             sudo chown -R www-data:www-data /var/www/laravel-timr/bootstrap/cache
@@ -84,7 +83,6 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             cd /var/www/laravel-timr
-            sudo -u www-data php artisan key:generate
             sudo -u www-data php artisan cache:clear
             sudo -u www-data php artisan config:cache
             sudo -u www-data php artisan route:cache
