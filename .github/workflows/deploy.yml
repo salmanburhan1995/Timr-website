@@ -29,22 +29,15 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Verify Code Copy
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ls -la /tmp/laravel-timr"
+
       - name: Manage Directories on Server
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
-            # Backup and replace existing application directory
-            if [ -d ~/bu_laravel_timr ]; then
-              sudo rm -rf ~/bu_laravel_timr
-            fi
-            if [ -d /var/www/laravel-timr ]; then
-              sudo mv /var/www/laravel-timr ~/bu_laravel_timr
-            fi
-
-            # Ensure the target directory exists
+            sudo rm -rf /var/www/laravel-timr
             sudo mkdir -p /var/www/laravel-timr
-            sudo mkdir -p /var/www/laravel-timr/bootstrap/cache
-
-            # Set ownership and permissions
             sudo chown -R www-data:www-data /var/www/laravel-timr
             sudo chmod -R 755 /var/www/laravel-timr
           EOF
@@ -54,7 +47,6 @@ jobs:
       - name: Move Code from Temporary Directory to Target Directory
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
-            # Move code to the target directory and set ownership
             sudo mv /tmp/laravel-timr/* /var/www/laravel-timr/
             sudo chown -R www-data:www-data /var/www/laravel-timr
             sudo chmod -R 755 /var/www/laravel-timr
@@ -62,11 +54,14 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Verify `composer.json` Presence
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ls -la /var/www/laravel-timr/composer.json"
+
       - name: Install Composer Dependencies
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             cd /var/www/laravel-timr
-            # Ensure proper permissions for composer install
             sudo -u www-data composer install --no-interaction
           EOF
         env:
