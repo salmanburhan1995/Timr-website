@@ -140,17 +140,17 @@ video {
 }
 
 .container {
-    max-width: 80rem;
+    /* max-width: 80rem; */
     width: 100%;
     height: auto;
     padding: 0 2rem;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 @media only screen and (max-width:992px) {
     .container {
         padding: 0 1rem;
-        margin: 0 auto
+        margin: 0 auto;
     }
     .header .menu>ul>li>a{
         color: #0d2436 !important;

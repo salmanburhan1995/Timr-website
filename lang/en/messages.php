@@ -20,6 +20,8 @@ return [
     'no_credit' => 'No credit card required',
     'free' => 'Free',
     'pro' => 'Pro',
+    'basic_plan'=>'Basic Plan',
+    'enterprise_plan'=>'Enterprise plan',
     'select_plan' => 'Select Plan',
 
     /* 'Sign Up For Free' => '',

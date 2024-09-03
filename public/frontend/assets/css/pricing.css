@@ -5,6 +5,7 @@ td.border-0 {
     /*padding-left: 29px;*/
     padding: 5px 25px;
     color: #64626A;
+    text-transform: capitalize;
 }
 .bg-dark-l{
     background: #E6E6E6;

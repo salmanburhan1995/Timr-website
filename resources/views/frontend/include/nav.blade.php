@@ -29,7 +29,7 @@
                 <button type="button" class="menu-mobile-close"><i class="fa-solid fa-close"></i></button>
               </div>
               <ul class="menu-section ">
-                <li><a href="{{ route('index') }}">@lang('messages.home'){{--{{ __('home') }}--}}{{--{{ translateContent('home', $translationService) }}--}}</a></li>
+              <li><a href="{{ route('index') }}">@lang('messages.home'){{--{{ __('home') }}--}}{{--{{ translateContent('home', $translationService) }}--}}</a></li>
                 <li class="menu-item-has-children ">
                   <a href="{{ route('price') }}">@lang('messages.price'){{--{{ translateContent('pricing', $translationService) }}--}}</a>
                 </li>
@@ -49,16 +49,16 @@
             </nav>
           </div>
           <div class="header-item-right">
-            <a href="{{ route('signup') }}" class="px-5 text-dark fw-500 f-18 m-none" >@lang('messages.sign_in'){{--{{ translateContent('Sign In', $translationService) }}--}}</a>
-            <a href="{{ route('signup') }}" class="btn btn-primary btn-hover m-none">@lang('messages.beta_sign'){{--{{ translateContent('Beta Sign-Up', $translationService) }}--}}</a>
+          <a href="{{ route('signup') }}" class="px-5 text-dark fw-500 f-18 m-none" >@lang('messages.sign_in'){{--{{ translateContent('Sign In', $translationService) }}--}}</a>
+          <a href="{{ route('signup') }}" class="btn btn-primary btn-hover m-none">@lang('messages.beta_sign'){{--{{ translateContent('Beta Sign-Up', $translationService) }}--}}</a>
 
            <!-- Language Dropdown -->
-              <li class="nav-item dropdown m-none">
-                  <a href="#" class="nav-link dropdown-toggle langbox" id="languageDropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                      <img src="{{ asset('frontend/assets/img/english.svg') }}" width="20" class="px-2" alt=""> <span>{{ strtoupper(session('locale','en')) }}</span>
-                  </a>
-                  <ul class="dropdown-menu langdrop" aria-labelledby="languageDropdown">
-                      <li>
+           <li class="nav-item dropdown m-none">
+                    <a href="#" class="nav-link dropdown-toggle langbox" id="languageDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img src="{{asset('frontend/assets/img/english.svg')}}" whidth="20" class="px-2" alt="">  <span>EN</span>
+                    </a>
+                    <ul class="dropdown-menu langdrop" aria-labelledby="languageDropdown">
+                    <li>
                           <a class="dropdown-item px-2" href="{{ route('lang.switch', ['locale' => 'en']) }}">
                               <img src="{{ asset('frontend/assets/img/english.svg') }}" width="20" alt=""> <span class="px-2">English</span>
                           </a>
@@ -90,12 +90,9 @@
                               <img src="{{ asset('frontend/assets/img/norway.svg') }}" width="20" alt=""> <span class="px-2">Norwegian</span>
                           </a>
                       </li>
-
-                  </ul>
-              </li>
-
-
-              <button type="button" class="menu-mobile-trigger">
+                    </ul>
+                </li>
+            <button type="button" class="menu-mobile-trigger">
               <span></span>
               <span></span>
               <span></span>
@@ -105,4 +102,4 @@
         </div>
       </div>
     </div>
-</header>
+
