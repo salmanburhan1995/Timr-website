@@ -6,6 +6,7 @@ use App\Http\Controllers\frontend\AbcController;
 use App\Http\Controllers\frontend\StripePaymentController;
 use App\Http\Controllers\frontend\LocalController;
 use App\Http\Controllers\Crm\LanguagesController;
+use App\Http\Controllers\Crm\HomepageController;
 
 /*Route::get('/', function () {
     //return view('welcome');
@@ -39,4 +40,9 @@ Route::get('auth/linkedin', [HomeController::class, 'redirectToLinkedin']);
 Route::get('auth/linkedin/callback', [HomeController::class, 'handleLinkedinCallback']);
 Route::post('auth/signup',[HomeController::class, 'storeSignup'])->name('signupStore');
 
-Route::get('languages', [LanguagesController::class, 'langugages']);
+Route::prefix('admin')->group(function () {
+    Route::get('languages', [LanguagesController::class, 'langugages']);
+    Route::get('homepage', [HomepageController::class, 'index']);
+    Route::get('homepage-hero-section-store', [HomepageController::class, 'heroSectionStore'])->name('cms.homepage-hero-section.store');
+});
+
