@@ -9,7 +9,7 @@
             <div class="row pt-5 px-4 justify-content-center align-items-center text-center">
                 <div class="col-lg-12">
 
-                    <p class="f-14 mb-3 tags bg-tags wow animate__animated animate__fadeInDown">{{ translateContent('Streamline employee time management effortlessly.', $translationService) }}</p>
+                    <p class="f-14 mb-3 tags bg-tags wow animate__animated animate__fadeInDown">@lang('homePage.hero_sub_heading')</p>
                     <h1 class="ff-primary fw-600 line-h-15 wow animate__animated animate__fadeInDown">{{ translateContent('Efficiently track and manage temporary', $translationService) }} <br> {{ translateContent('workers and your clients', $translationService) }} </h1>
                     <p class="f-18 line-h-15 wow animate__animated animate__fadeInDown">
                         {{ translateContent('An intuitive software that streamlines scheduling, tracking, and workforce productivity.', $translationService) }}
@@ -85,7 +85,7 @@
                             <p class="fw-500 f-16 fw-500">{{ translateContent('Union Agreements', $translationService) }}</p>
                             <h2 class="f-24 fw-600 pt-2">
                             {{ translateContent('Create and manage union agreements that can be associated with each employee hired', $translationService) }}
-                                
+
                             </h2>
                             <div class="listitem__img text-center">
                                 <img src="{{asset('frontend/assets/img/card-dashboard.png')}}" width="460"

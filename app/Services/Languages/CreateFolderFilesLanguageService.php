@@ -15,7 +15,7 @@ class CreateFolderFilesLanguageService
         'norwegian'=>'no'
     ];
 
-    private $languagesFiles = [
+    private $pagesFolders = [
         'homePage',
         'aboutUs',
         'pricing',
@@ -34,6 +34,9 @@ class CreateFolderFilesLanguageService
     {
         //
     }
+
+
+
 
     // Create languages main folder
     private function createMainFunction($mainLanguageFolder){
@@ -68,9 +71,9 @@ class CreateFolderFilesLanguageService
                     // if language folder exist
                     if(!is_dir($mainLanguageFolder.'/'.$languageFolder)){
                         mkdir($mainLanguageFolder.'/'.$languageFolder);
-                        $this->createFilesInLaguageFolder($mainLanguageFolder,$languageFolder);
+                        $this->createFoldersInLaguageFolder($mainLanguageFolder,$languageFolder);
                     }else{
-                        $this->createFilesInLaguageFolder($mainLanguageFolder,$languageFolder);
+                        $this->createFoldersInLaguageFolder($mainLanguageFolder,$languageFolder);
                     }
                 }
 
@@ -83,35 +86,39 @@ class CreateFolderFilesLanguageService
         }
 
     }
-    // Create pages file in languages folders
-    private function createFilesInLaguageFolder($mainFolder,$languageFolder)
+    // Create pages folder in languages folders
+    private function createFoldersInLaguageFolder($mainFolder,$languageFolder)
     {
         try{
+            // intialized variable to check if every folder is uploaded
+            $folderCheck = 0;
             // if the directory exist
             if(is_dir($mainFolder.'/'.$languageFolder)){
-                // get the files array
-                $files = $this->languagesFiles;
+                // get the pages folder array
+                $pages = $this->pagesFolders;
+
                 // get existing files from folder
-                $getfolderFiles = array_diff(scandir($mainFolder.'/'.$languageFolder), array('..', '.'));
-                // foreach the list of files to create
-                foreach($files as $file)
+                $getPagesFolders = array_diff(scandir($mainFolder.'/'.$languageFolder), array('..', '.'));
+
+                // foreach the list of pages folder to create
+                foreach($pages as $key=>$pageFolder)
                 {
-                    // Check if the file exist
-                    if(!in_array(($file.'.php'),$getfolderFiles)){
-                        // create the file in the selected language folder
-                        $createFile = fopen($mainFolder.'/'.$languageFolder.'/'.$file.'.php','x+');
-                        fclose($createFile);
 
+                    // if pages folder not exist
+                    if(!in_array($pageFolder,$getPagesFolders)){
+                        if(!is_dir($mainFolder.'/'.$languageFolder.'/'.$pageFolder)){
+                            mkdir($mainFolder.'/'.$languageFolder.'/'.$pageFolder);
+                        }
                     }
+
                 }
-
-
+                return true;
             }else{
 
                 $this->createLanguageFolder($mainFolder,$languageFolder,$folderFile);
             }
         }catch(\Exception $exception){
-            throw  $exception->getMessage();
+            dd($exception);
         }
 
 
@@ -141,6 +148,15 @@ class CreateFolderFilesLanguageService
             $this->createLanguageFolder($this->languageFolder);
         }
 
+    }
+
+    // get the languages
+    public function getLanguages(){
+        return $this->languages;
+    }
+    // get the language folder
+    public function getLanguageFolder(){
+        return $this->languageFolder;
     }
 
     // Add parameters

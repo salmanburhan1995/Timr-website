@@ -42,7 +42,14 @@ Route::post('auth/signup',[HomeController::class, 'storeSignup'])->name('signupS
 
 Route::prefix('admin')->group(function () {
     Route::get('languages', [LanguagesController::class, 'langugages']);
-    Route::get('homepage', [HomepageController::class, 'index']);
-    Route::get('homepage-hero-section-store', [HomepageController::class, 'heroSectionStore'])->name('cms.homepage-hero-section.store');
+    Route::get('homepage', [HomepageController::class, 'index'])->name('admin.homePage.hero-section');
+    Route::post('homepage-hero-section-store', [HomepageController::class, 'heroSectionStore'])->name('cms.homepage-hero-section.store');
+    Route::prefix('homePage')->group(function () {
+        Route::get('/about-us', [HomepageController::class, 'aboutusSection'])->name('admin.homePage.about-us');
+        Route::post('homepage-about-section-store', [HomepageController::class, 'aboutusSectionStore'])->name('cms.homepage-about-section.store');
+        Route::get('let-us-help-you', [HomepageController::class, 'letUsHelpYouSection'])->name('cms.homePage-let-us-help-you');
+        Route::post('homepage-letushelpyou-section-store', [HomepageController::class, 'letUsHelpYouSectionStore'])->name('cms.homepage-letushelpyou-section.store');
+    });
+
 });
 

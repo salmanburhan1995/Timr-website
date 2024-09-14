@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="card-body pt-5">
-                    <form id="home-hero-section" class="form" action="{{route('cms.homepage-hero-section.store')}}">
+                    <form id="home-hero-section" class="form" action="{{route('cms.homepage-hero-section.store')}}" method="POST">
                         @csrf
                         <!--begin::Input group-->
                         <div class="fv-row mb-7">
